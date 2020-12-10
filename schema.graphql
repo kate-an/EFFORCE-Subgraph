@@ -1,0 +1,57 @@
+type _Burn @entity {
+  id: ID!
+  count: BigInt!
+  burner: Bytes!
+  value: BigInt!
+}
+
+type _Mint @entity {
+  id: ID!
+  count: BigInt!
+  to: Bytes!
+  amount: BigInt!
+}
+
+type _OwnershipRenounced @entity {
+  id: ID!
+  count: BigInt!
+  previousOwner: Bytes!
+}
+
+type _OwnershipTransferred @entity {
+  id: ID!
+  count: BigInt!
+  previousOwner: Bytes!
+  newOwner: Bytes!
+}
+
+type _Freezed @entity {
+  id: ID!
+  count: BigInt!
+  to: Bytes!
+  release: BigInt!
+  amount: BigInt!
+}
+
+type _Released @entity {
+  id: ID!
+  count: BigInt!
+  owner: Bytes!
+  amount: BigInt!
+}
+
+type _Approval @entity {
+  id: ID!
+  count: BigInt!
+  owner: Bytes!
+  spender: Bytes!
+  value: BigInt!
+}
+
+type _Transfer @entity {
+  id: ID!
+  count: BigInt!
+  from: Bytes!
+  to: Bytes!
+  value: BigInt!
+}

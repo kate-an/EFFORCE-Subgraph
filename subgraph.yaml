@@ -1,0 +1,57 @@
+specVersion: 0.0.2
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: MainToken
+    network: mainnet
+    source:
+      address: "0x34950Ff2b487d9E5282c5aB342d08A2f712eb79F"
+      abi: MainToken
+      startBlock: 8607727
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Initialized
+        - Pause
+        - Unpause
+        - Burn
+        - Mint
+        - MintFinished
+        - OwnershipRenounced
+        - OwnershipTransferred
+        - Freezed
+        - Released
+        - Approval
+        - Transfer
+      abis:
+        - name: MainToken
+          file: ./abis/MainToken.json
+      eventHandlers:
+        - event: Initialized()
+          handler: handleInitialized
+        - event: Pause()
+          handler: handlePause
+        - event: Unpause()
+          handler: handleUnpause
+        - event: Burn(indexed address,uint256)
+          handler: handleBurn
+        - event: Mint(indexed address,uint256)
+          handler: handleMint
+        - event: MintFinished()
+          handler: handleMintFinished
+        - event: OwnershipRenounced(indexed address)
+          handler: handleOwnershipRenounced
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: Freezed(indexed address,uint64,uint256)
+          handler: handleFreezed
+        - event: Released(indexed address,uint256)
+          handler: handleReleased
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApproval
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+      file: ./src/mapping.ts
